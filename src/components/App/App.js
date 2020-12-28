@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ghibli from '../../api/ghibli';
 import SearchBar from '../SearchBar';
+import Layout from '../Layout';
 
 const App = () => {
 	const [ movies, setMovies ] = useState([]);
@@ -14,7 +15,7 @@ const App = () => {
 		setMovies(response.data);
 	};
 
-	return <div>{<SearchBar movies={movies} />}</div>;
+	return <Layout>{<SearchBar movies={movies} />}</Layout>;
 };
 
 export default App;
