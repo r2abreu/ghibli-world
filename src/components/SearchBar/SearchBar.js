@@ -1,10 +1,13 @@
 import React from 'react';
 import Autocomplete from '../Autocomplete';
+import OutsideAlerter from '../OutsideAlerter/OutsideAlerter';
 
-const SearchBar = ({ movies, showAutocomplete }) => {
+const SearchBar = ({ movies, showAutocomplete, hideAutocomplete }) => {
 	return (
 		<React.Fragment>
-			<Autocomplete movies={movies} showAutocomplete={showAutocomplete} />
+			<OutsideAlerter hideAutocomplete={hideAutocomplete}>
+				<Autocomplete movies={movies} showAutocomplete={showAutocomplete} />
+			</OutsideAlerter>
 		</React.Fragment>
 	);
 };

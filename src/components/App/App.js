@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ghibli from '../../api/ghibli';
 import SearchBar from '../SearchBar';
 import Layout from '../Layout';
-import OutsideAlerter from '../OutsideAlerter';
 
 const App = () => {
 	const [ movies, setMovies ] = useState([]);
@@ -26,9 +25,11 @@ const App = () => {
 	};
 
 	return (
-		<OutsideAlerter hideAutocomplete={hideAutocomplete}>
-			<Layout>{<SearchBar movies={movies} showAutocomplete={showAutocomplete} />}</Layout>
-		</OutsideAlerter>
+		<React.Fragment>
+			<Layout>
+				{<SearchBar movies={movies} showAutocomplete={showAutocomplete} hideAutocomplete={hideAutocomplete} />}
+			</Layout>
+		</React.Fragment>
 	);
 };
 
