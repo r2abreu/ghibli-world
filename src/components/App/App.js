@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ghibli from '../api/ghibli';
+import ghibli from '../../api/ghibli';
 
 const App = () => {
 	const [ movies, setMovies ] = useState([]);
@@ -10,9 +10,10 @@ const App = () => {
 
 	const search = async () => {
 		const response = await ghibli('films');
-
-		console.log(response);
+		setMovies(response.data);
 	};
+
+	console.log(movies);
 	return <div>Hola</div>;
 };
 
