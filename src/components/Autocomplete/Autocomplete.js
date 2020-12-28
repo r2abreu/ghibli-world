@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Autocomplete = ({ movies }) => {
+const Autocomplete = ({ movies, showAutocomplete }) => {
 	// Define index of selected suggestion
 	let [ activeSuggestion, setActiveSuggestion ] = useState(0);
 	// Match user's input
@@ -77,17 +77,26 @@ const Autocomplete = ({ movies }) => {
 		} else {
 			suggestionListComponent = (
 				<div className="no-suggestions">
-					<em>No suggestions available.</em>
+					<em>Sin coincidencias.</em>
 				</div>
 			);
 		}
 	}
+	console.log(showAutocomplete);
 
 	return (
-		<React.Fragment>
-			<input type="text" onChange={onChange} onKeyDown={onKeyDown} value={userInput} />
-			{suggestionListComponent}
-		</React.Fragment>
+		<div>
+			<label htmlFor="searchbar">Busca una película</label>
+			<input
+				type="text"
+				onChange={onChange}
+				onKeyDown={onKeyDown}
+				value={userInput}
+				placeholder="Howl's Moving Castle"
+				id="searchBar"
+			/>
+			{showAutocomplete ? suggestionListComponent : null}
+		</div>
 	);
 };
 

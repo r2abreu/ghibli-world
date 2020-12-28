@@ -12,10 +12,41 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+main {
+	max-width: 1000px;
+	margin: auto;
+}
+
+main > div {
+	position: relative;
+	width: 80%;
+	margin: auto;
+}
+
+header {
+	padding: 0 10em;
+}
+
+header h1 {
+	font-family: 'Amaranth', sans-serif;
+	font-weight: lighter;
+	font-size: 4rem;
+	text-align: right;
+}
+
+label {
+	display: block;
+	width: 80%;
+	margin: 1em 0;
+}
+
 input {
+	display: block;
 	border: 1px solid #999;
-	padding: 0.5rem;
-	width: 300px;
+	border-radius: 0.5em;
+	padding: 0.8em;
+	width: 100%;
+	background: no-repeat url(./search.svg) 98% / 20px;
 }
 
 .no-suggestions {
@@ -24,14 +55,16 @@ input {
 }
 
 .suggestions {
+	position: absolute;
 	border: 1px solid #999;
+	left: 0;
 	border-top-width: 0;
 	list-style: none;
 	margin-top: 0;
 	max-height: 143px;
 	overflow-y: auto;
 	padding-left: 0;
-	width: calc(300px + 1rem);
+	width: 100%;
 }
 
 .suggestions li {
@@ -40,8 +73,8 @@ input {
 
 .suggestion-active,
 .suggestions li:hover {
-	background-color: #008f68;
-	color: #fae042;
+	background-color: #b4dcf5;
+	color: #ffffff;
 	cursor: pointer;
 	font-weight: 700;
 }
