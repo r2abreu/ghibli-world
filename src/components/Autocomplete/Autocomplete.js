@@ -43,7 +43,7 @@ const Autocomplete = ({ movies, showAutocomplete }) => {
 				return;
 			}
 
-			setActiveSuggestion(-1);
+			setActiveSuggestion(--activeSuggestion);
 			// If the user presses the "Down" arrow
 		} else if (event.keyCode === 40) {
 			if (activeSuggestion - 1 === filteredSuggestion.length) {
@@ -82,10 +82,9 @@ const Autocomplete = ({ movies, showAutocomplete }) => {
 			);
 		}
 	}
-	console.log(showAutocomplete);
 
 	return (
-		<div>
+		<React.Fragment>
 			<label htmlFor="searchbar">Busca una película</label>
 			<input
 				type="text"
@@ -96,7 +95,7 @@ const Autocomplete = ({ movies, showAutocomplete }) => {
 				id="searchBar"
 			/>
 			{showAutocomplete ? suggestionListComponent : null}
-		</div>
+		</React.Fragment>
 	);
 };
 

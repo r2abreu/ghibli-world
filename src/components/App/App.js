@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ghibli from '../../api/ghibli';
 import SearchBar from '../SearchBar';
 import Layout from '../Layout';
+import Accordion from '../Accordion/Accordion';
 
 const App = () => {
 	const [ movies, setMovies ] = useState([]);
@@ -27,7 +28,8 @@ const App = () => {
 	return (
 		<React.Fragment>
 			<Layout>
-				{<SearchBar movies={movies} showAutocomplete={showAutocomplete} hideAutocomplete={hideAutocomplete} />}
+				<SearchBar movies={movies} showAutocomplete={showAutocomplete} hideAutocomplete={hideAutocomplete} />
+				<Accordion />
 			</Layout>
 		</React.Fragment>
 	);

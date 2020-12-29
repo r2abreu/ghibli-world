@@ -1,19 +1,19 @@
 import React, { useRef, useEffect } from 'react';
 
-const useOutsideAlerter = (ref, fn) => {
+const useOutsideAlerter = (ref, hideAutocomplete) => {
 	useEffect(
 		() => {
 			const handleClickOuside = (event) => {
 				if (ref.current && !ref.current.contains(event.target)) {
-					fn('hide');
+					hideAutocomplete('hide');
 				} else {
-					fn('show');
+					hideAutocomplete('show');
 				}
 			};
 
 			document.addEventListener('mousedown', handleClickOuside);
 		},
-		[ ref ]
+		[ ref, hideAutocomplete ]
 	);
 };
 
