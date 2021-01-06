@@ -76,7 +76,7 @@ const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) =>
 	return (
 		<React.Fragment>
 			<form onSubmit={onFormSubmit}>
-				<label htmlFor="searchbar">Busca una película</label>
+				<label htmlFor="searchbar">Search for a Movie</label>
 				<input
 					type="text"
 					onChange={onChange}

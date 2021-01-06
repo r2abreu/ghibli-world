@@ -11,11 +11,13 @@ const MovieDetails = ({ userInput, movies }) => {
 		return (
 			<div className="movie-details">
 				<div>
-					<h2>{title}</h2>
-					<span>{release_date}</span>
-				</div>
-				<div>
-					<h3>{rt_score} / 10</h3>
+					<div>
+						<h2>{title}</h2>
+						<span>({release_date})</span>
+					</div>
+					<div>
+						<h3>{rt_score} / 10</h3>
+					</div>
 				</div>
 				<MovieTrailer userInput={userInput} />
 				<p>{description}</p>
@@ -26,7 +28,7 @@ const MovieDetails = ({ userInput, movies }) => {
 			</div>
 		);
 	} else {
-		return null;
+		return <h4>Select a Movie</h4>;
 	}
 };
 

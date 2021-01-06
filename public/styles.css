@@ -1,3 +1,7 @@
+:root {
+	--primary-color: #57a84c;
+}
+
 html {
 	box-sizing: border-box;
 }
@@ -16,24 +20,37 @@ body {
 
 main > div {
 	position: relative;
-	width: 80%;
+	width: 100%;
 	margin: auto;
-}
-
-header {
-	padding: 0 10em;
 }
 
 header h1 {
 	font-family: 'Amaranth', sans-serif;
 	font-weight: lighter;
 	font-size: 4rem;
+	margin: 1em 0 0 0;
 	text-align: right;
+	color: var(--primary-color);
+	filter: drop-shadow(1px 5px 1px rgba(0, 0, 0, 0.384));
+}
+
+header figure {
+	width: 20em;
+	margin: auto;
+}
+
+header p {
+	text-align: right;
+	margin: 0;
+}
+
+figure img {
+	width: 100%;
 }
 
 label {
 	display: block;
-	width: 80%;
+	width: 100%;
 	margin: 1em 0;
 }
 
@@ -78,4 +95,38 @@ input {
 
 .suggestions li:not(:last-of-type) {
 	border-bottom: 1px solid #999;
+}
+
+.movie-details p {
+	line-height: 1.5;
+	text-align: justify;
+}
+
+.movie-details p::first-letter {
+	font-size: 2rem;
+}
+
+.movie-details > div:first-of-type,
+.movie-details > div:first-of-type > div:first-of-type {
+	display: flex;
+	align-items: center;
+}
+
+.movie-details > div:first-of-type {
+	justify-content: space-between;
+}
+
+.movie-details > div:first-of-type h2 {
+	margin-right: 0.5em;
+}
+
+main > h4 {
+	font-size: 4em;
+	text-align: center;
+	margin-top: 3em;
+}
+
+iframe {
+	width: 100%;
+	min-height: 400px;
 }
