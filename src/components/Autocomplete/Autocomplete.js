@@ -35,7 +35,6 @@ const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) =>
 	const onKeyDown = (event) => {
 		// If the user presses "Enter"
 		if (event.keyCode === 13) {
-			setActiveSuggestion(0);
 			setShowSuggestions(false);
 			onInputChange(filteredSuggestion[activeSuggestion].title);
 			// If the user presses the "Up" arrow
@@ -70,9 +69,13 @@ const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) =>
 		}
 	};
 
+	const onFormSubmit = (event) => {
+		event.preventDefault();
+	};
+
 	return (
 		<React.Fragment>
-			<form>
+			<form onSubmit={onFormSubmit}>
 				<label htmlFor="searchbar">Busca una película</label>
 				<input
 					type="text"

@@ -1,4 +1,5 @@
 import React from 'react';
+import MovieTrailer from '../MovieTrailer';
 
 const MovieDetails = ({ userInput, movies }) => {
 	const [ selectedMovie ] = movies.filter((movie) => {
@@ -6,11 +7,22 @@ const MovieDetails = ({ userInput, movies }) => {
 	});
 
 	if (selectedMovie) {
-		const { title, release_date, director, rt_sore, producer, description } = selectedMovie;
+		const { title, release_date, director, rt_score, producer, description } = selectedMovie;
 		return (
 			<div className="movie-details">
-				<h2>{title}</h2>
-				<span>{release_date}</span>
+				<div>
+					<h2>{title}</h2>
+					<span>{release_date}</span>
+				</div>
+				<div>
+					<h3>{rt_score} / 10</h3>
+				</div>
+				<MovieTrailer userInput={userInput} />
+				<p>{description}</p>
+				<div>
+					<p>Director: {director}</p>
+					<p>Producer: {producer}</p>
+				</div>
 			</div>
 		);
 	} else {
