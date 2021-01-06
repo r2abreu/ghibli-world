@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import ghibli from '../../api/ghibli';
+import React, { useState } from 'react';
+import { useGhibli } from '../../hooks/helpers';
 import SearchBar from '../SearchBar';
 import Layout from '../Layout';
-import Accordion from '../Accordion/Accordion';
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 const App = () => {
-	const [ movies, setMovies ] = useState([]);
+	const [ movies, searchGhibli ] = useGhibli('films');
 	const [ showAutocomplete, setShowAutocomplete ] = useState(true);
-
-	useEffect(() => {
-		search();
-	}, []);
-
-	const search = async () => {
-		const response = await ghibli('films');
-		setMovies(response.data);
-	};
+	const [ userInput, setUserInput ] = useState('Ponyo');
 
 	const hideAutocomplete = (condition) => {
 		if (condition === 'show') {
@@ -25,11 +17,21 @@ const App = () => {
 		}
 	};
 
+	const onInputChange = (input) => {
+		setUserInput(input);
+	};
+
 	return (
 		<React.Fragment>
 			<Layout>
-				<SearchBar movies={movies} showAutocomplete={showAutocomplete} hideAutocomplete={hideAutocomplete} />
-				<Accordion />
+				<SearchBar
+					movies={movies}
+					showAutocomplete={showAutocomplete}
+					hideAutocomplete={hideAutocomplete}
+					onInputChange={onInputChange}
+					userInput={userInput}
+				/>
+				<MovieDetails userInput={userInput} movies={movies} />
 			</Layout>
 		</React.Fragment>
 	);

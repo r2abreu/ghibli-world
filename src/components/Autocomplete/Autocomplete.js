@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
+import SuggestionList from '../SuggestionList';
 
-const Autocomplete = ({ movies, showAutocomplete }) => {
+const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) => {
 	// Define index of selected suggestion
 	let [ activeSuggestion, setActiveSuggestion ] = useState(0);
 	// Match user's input
 	let [ filteredSuggestion, setFilteredSuggestion ] = useState([]);
 	// Determines if the suggestion list appears
 	let [ showSuggestions, setShowSuggestions ] = useState(false);
-	let [ userInput, setUserInput ] = useState('');
 
 	const onChange = (event) => {
 		const suggestions = movies;
 		// Making the component controlled
-		const userInput = event.currentTarget.value;
+		onInputChange(event.currentTarget.value);
+
 		// Go trough all the suggestions, filter out those that do not match users input and return a new array containing those suggestions that do
 		const filteredSuggestions = suggestions.filter((suggestion) => {
 			// Return  every element that matches the pattern (users input)
@@ -22,13 +23,13 @@ const Autocomplete = ({ movies, showAutocomplete }) => {
 		setActiveSuggestion(0);
 		setFilteredSuggestion(filteredSuggestions);
 		setShowSuggestions(true);
-		setUserInput(event.currentTarget.value);
+		onInputChange(event.currentTarget.value);
 	};
 
 	const onClick = (event) => {
 		setFilteredSuggestion([]);
 		setShowSuggestions(false);
-		setUserInput(event.currentTarget.innerText);
+		onInputChange(event.currentTarget.innerText);
 	};
 
 	const onKeyDown = (event) => {
@@ -36,7 +37,7 @@ const Autocomplete = ({ movies, showAutocomplete }) => {
 		if (event.keyCode === 13) {
 			setActiveSuggestion(0);
 			setShowSuggestions(false);
-			setUserInput(filteredSuggestion[activeSuggestion].title);
+			onInputChange(filteredSuggestion[activeSuggestion].title);
 			// If the user presses the "Up" arrow
 		} else if (event.keyCode === 38) {
 			if (activeSuggestion === 0) {
@@ -53,48 +54,37 @@ const Autocomplete = ({ movies, showAutocomplete }) => {
 		}
 	};
 
-	let suggestionListComponent;
-
-	if (showSuggestions && userInput) {
-		if (filteredSuggestion.length) {
-			suggestionListComponent = (
-				<ul className="suggestions">
-					{filteredSuggestion.map((suggestion, index) => {
-						let className;
-
-						if (index === activeSuggestion) {
-							className = 'suggestion-active';
-						}
-
-						return (
-							<li className={className} key={suggestion.title} onClick={onClick}>
-								{suggestion.title}
-							</li>
-						);
-					})}
-				</ul>
+	const renderContent = () => {
+		if (showAutocomplete) {
+			return (
+				<SuggestionList
+					showSuggestions={showSuggestions}
+					userInput={userInput}
+					filteredSuggestion={filteredSuggestion}
+					onClick={onClick}
+					activeSuggestion={activeSuggestion}
+				/>
 			);
 		} else {
-			suggestionListComponent = (
-				<div className="no-suggestions">
-					<em>Sin coincidencias.</em>
-				</div>
-			);
+			return null;
 		}
-	}
+	};
 
 	return (
 		<React.Fragment>
-			<label htmlFor="searchbar">Busca una película</label>
-			<input
-				type="text"
-				onChange={onChange}
-				onKeyDown={onKeyDown}
-				value={userInput}
-				placeholder="Howl's Moving Castle"
-				id="searchBar"
-			/>
-			{showAutocomplete ? suggestionListComponent : null}
+			<form>
+				<label htmlFor="searchbar">Busca una película</label>
+				<input
+					type="text"
+					onChange={onChange}
+					onKeyDown={onKeyDown}
+					value={userInput}
+					placeholder="Howl's Moving Castle"
+					id="searchBar"
+					autoComplete="off"
+				/>
+			</form>
+			{renderContent()}
 		</React.Fragment>
 	);
 };

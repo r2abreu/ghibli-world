@@ -1,21 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-
-const useOutsideAlerter = (ref, hideAutocomplete) => {
-	useEffect(
-		() => {
-			const handleClickOuside = (event) => {
-				if (ref.current && !ref.current.contains(event.target)) {
-					hideAutocomplete('hide');
-				} else {
-					hideAutocomplete('show');
-				}
-			};
-
-			document.addEventListener('mousedown', handleClickOuside);
-		},
-		[ ref, hideAutocomplete ]
-	);
-};
+import React, { useRef } from 'react';
+import { useOutsideAlerter } from '../../hooks/helpers';
 
 const OutsideAlerter = ({ children, hideAutocomplete }) => {
 	const wrapperRef = useRef(null);
