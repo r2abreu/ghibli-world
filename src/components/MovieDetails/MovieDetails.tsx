@@ -1,7 +1,13 @@
 import React from 'react';
 import MovieTrailer from '../MovieTrailer';
+import {Object} from '../Autocomplete';
 
-const MovieDetails = ({ userInput, movies }) => {
+interface Params {
+	userInput: string, 
+	movies: Array<Object>
+}
+
+const MovieDetails = ({ userInput, movies }: Params) => {
 	const [ selectedMovie ] = movies.filter((movie) => {
 		return movie.title === userInput;
 	});
@@ -19,6 +25,7 @@ const MovieDetails = ({ userInput, movies }) => {
 						<h3>{rt_score} / 10</h3>
 					</div>
 				</div>
+				<hr />
 				<MovieTrailer userInput={userInput} />
 				<p>{description}</p>
 				<div>

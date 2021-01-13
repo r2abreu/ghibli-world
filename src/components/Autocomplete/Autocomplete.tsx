@@ -1,15 +1,41 @@
 import React, { useState } from 'react';
 import SuggestionList from '../SuggestionList';
 
-const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) => {
+export interface Object {
+	id: string, 
+	title: string, 
+	description: string, 
+	director: string, 
+	producer: string, 
+	release_date: string, 
+	rt_score: string, 
+	people: Array<string>, 
+	species: Array<string>, 
+	locations: Array<string>, 
+	vehicles: Array<string>
+	url: string
+}
+
+
+export interface Params {
+	movies: Array<Object>,
+	showAutocomplete: boolean, 
+	onInputChange: (arg: string) => void, 
+	userInput: string
+}
+
+
+
+
+const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput } : Params) => {
 	// Define index of selected suggestion
 	let [ activeSuggestion, setActiveSuggestion ] = useState(0);
 	// Match user's input
-	let [ filteredSuggestion, setFilteredSuggestion ] = useState([]);
+	let [ filteredSuggestion, setFilteredSuggestion ] = useState<Array<Object>>([]);
 	// Determines if the suggestion list appears
 	let [ showSuggestions, setShowSuggestions ] = useState(false);
 
-	const onChange = (event) => {
+	const onChange = (event: React.FormEvent<HTMLInputElement>) :void => {
 		const suggestions = movies;
 		// Making the component controlled
 		onInputChange(event.currentTarget.value);
@@ -26,13 +52,13 @@ const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) =>
 		onInputChange(event.currentTarget.value);
 	};
 
-	const onClick = (event) => {
+	const onClick = (event: React.MouseEvent<HTMLElement>) => {
 		setFilteredSuggestion([]);
 		setShowSuggestions(false);
 		onInputChange(event.currentTarget.innerText);
 	};
 
-	const onKeyDown = (event) => {
+	const onKeyDown = (event: React.KeyboardEvent<HTMLElement> ) => {
 		// If the user presses "Enter"
 		if (event.keyCode === 13) {
 			setShowSuggestions(false);
@@ -69,7 +95,7 @@ const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput }) =>
 		}
 	};
 
-	const onFormSubmit = (event) => {
+	const onFormSubmit = (event: React.FormEvent<EventTarget>): void => {
 		event.preventDefault();
 	};
 

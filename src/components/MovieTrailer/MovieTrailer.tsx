@@ -1,12 +1,12 @@
 import React from 'react';
 import { useVideos } from '../../hooks/helpers';
 
-const MovieTrailer = ({ userInput }) => {
+const MovieTrailer = ({ userInput }: {userInput: string}) => {
 	// const [ response, search ] = useVideos(`${userInput} trailer`);
 	const response = 'yaha';
 	if (response) {
 		const video = response[0];
-		const { videoId, snippet } = video;
+		// const { videoId, snippet } = video;
 		return (
 			// <iframe
 			// 	width="560"

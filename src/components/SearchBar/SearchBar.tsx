@@ -1,8 +1,13 @@
 import React from 'react';
 import Autocomplete from '../Autocomplete';
 import OutsideAlerter from '../OutsideAlerter/OutsideAlerter';
+import { Params} from '../Autocomplete';
 
-const SearchBar = ({ movies, showAutocomplete, hideAutocomplete, onInputChange, userInput }) => {
+interface newParams extends Params {
+	hideAutocomplete: (condition: string) => void
+}
+
+const SearchBar = ({ movies, showAutocomplete, hideAutocomplete, onInputChange, userInput }: newParams) => {
 	return (
 		<React.Fragment>
 			<OutsideAlerter hideAutocomplete={hideAutocomplete}>

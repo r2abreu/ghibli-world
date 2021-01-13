@@ -1,6 +1,15 @@
 import React from 'react';
+import {Object} from '../Autocomplete';
 
-const SuggestionList = ({ showSuggestions, userInput, filteredSuggestion, activeSuggestion, onClick }) => {
+interface Params {
+	showSuggestions: boolean,
+	userInput: string, 
+	filteredSuggestion: Object[], 
+	activeSuggestion: number,
+	onClick: (event: React.MouseEvent<HTMLElement>) => void
+}
+
+const SuggestionList = ({ showSuggestions, userInput, filteredSuggestion, activeSuggestion, onClick }: Params) => {
 	if (showSuggestions && userInput) {
 		if (filteredSuggestion.length) {
 			return (

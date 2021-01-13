@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 import ghibli from '../api/ghibli';
 import youtube from '../api/youtube';
+import {Object} from '../components/Autocomplete';
 const KEY = process.env.REACT_APP_YOUTUBE_API;
 
-const useOutsideAlerter = (ref, hideAutocomplete) => {
+
+const useOutsideAlerter = (ref: RefObject<HTMLDivElement>, hideAutocomplete: (arg : string) => void) => {
 	useEffect(
 		() => {
-			const handleClickOuside = (event) => {
-				if (ref.current && !ref.current.contains(event.target)) {
+			const handleClickOuside = (event: MouseEvent) => {
+				if (ref.current && !ref.current.contains(event.target as HTMLDivElement)) {
 					hideAutocomplete('hide');
 				} else {
 					hideAutocomplete('show');
@@ -20,7 +22,7 @@ const useOutsideAlerter = (ref, hideAutocomplete) => {
 	);
 };
 
-const useGhibli = (term) => {
+const useGhibli = (term: string): [Object[], () => void] => {
 	const [ movies, setMovies ] = useState([]);
 	useEffect(() => {
 		searchGhibli();
@@ -34,7 +36,7 @@ const useGhibli = (term) => {
 	return [ movies, searchGhibli ];
 };
 
-const useVideos = (term) => {
+const useVideos = (term: string) => {
 	const [ videos, setVideos ] = useState('');
 
 	useEffect(
@@ -44,7 +46,7 @@ const useVideos = (term) => {
 		[ term ]
 	);
 
-	const search = async (term) => {
+	const search = async (term: string) => {
 		const response = await youtube.get('search', {
 			params: {
 				q: term,
