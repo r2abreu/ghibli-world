@@ -13,7 +13,6 @@ const Header = ({movies, showAutocomplete, hideAutocomplete, onInputChange, user
 		<header>
 			<div>
 				<h1>Ghibli World</h1>
-				<p>... a quick reference to this magical world</p>
 			</div>
 			<SearchBar movies={movies}
 					showAutocomplete={showAutocomplete}

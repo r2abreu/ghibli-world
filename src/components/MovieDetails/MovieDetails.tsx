@@ -19,15 +19,13 @@ const MovieDetails = ({ userInput, movies }: Params) => {
 				<div>
 					<div>
 						<h2>{title}</h2>
-						<span>({release_date})</span>
 					</div>
 					<div>
-						<h3>{rt_score} / 10</h3>
+						<h3>{rt_score} <span>/ 10</span></h3>
 					</div>
 				</div>
-				<hr />
 				<MovieTrailer userInput={userInput} />
-				<p>{description}</p>
+				<p>{`${description.slice(0, 250)}...`} <a href={`https://en.wikipedia.org/wiki/${title}`}target="_blank" rel="noreferrer">Read More</a></p>
 				<div>
 					<p>Director: {director}</p>
 					<p>Producer: {producer}</p>
