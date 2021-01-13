@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGhibli } from '../../hooks/helpers';
-import SearchBar from '../SearchBar';
+
 import Layout from '../Layout';
 import MovieDetails from '../MovieDetails/MovieDetails';
 
@@ -24,14 +24,12 @@ const App = () => {
 
 	return (
 		<React.Fragment>
-			<Layout>
-				<SearchBar
-					movies={movies}
+			<Layout movies={movies}
 					showAutocomplete={showAutocomplete}
 					hideAutocomplete={hideAutocomplete}
 					onInputChange={onInputChange}
-					userInput={userInput}
-				/>
+					userInput={userInput}>
+		
 				<MovieDetails userInput={userInput} movies={movies} />
 			</Layout>
 		</React.Fragment>

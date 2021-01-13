@@ -102,13 +102,12 @@ const Autocomplete = ({ movies, showAutocomplete, onInputChange, userInput } : P
 	return (
 		<React.Fragment>
 			<form onSubmit={onFormSubmit}>
-				<label htmlFor="searchbar">Search for a Movie</label>
 				<input
 					type="text"
 					onChange={onChange}
 					onKeyDown={onKeyDown}
 					value={userInput}
-					placeholder="Howl's Moving Castle"
+					placeholder="Search for Movies"
 					id="searchBar"
 					autoComplete="off"
 				/>
