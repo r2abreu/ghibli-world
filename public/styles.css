@@ -18,18 +18,29 @@ body {
 	margin: auto;
 }
 
-main > div {
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header form {
+	display: flex;
+}
+
+header > div:first-of-type {
+	flex: 1 1 60%;
+}
+
+header > div:last-of-type {
+	flex: 1 1 20%;
 	position: relative;
-	width: 100%;
-	margin: auto;
 }
 
 header h1 {
 	font-family: 'Amaranth', sans-serif;
 	font-weight: lighter;
 	font-size: 4rem;
-	margin: 1em 0 0 0;
-	text-align: right;
 	color: var(--primary-color);
 	filter: drop-shadow(1px 5px 1px rgba(0, 0, 0, 0.384));
 }
@@ -56,11 +67,19 @@ label {
 
 input {
 	display: block;
-	border: 1px solid #999;
+	border: 2px solid rgba(51, 51, 51, 0.103);
 	border-radius: 0.5em;
 	padding: 0.8em;
+	height: min-content;
 	width: 100%;
-	background: no-repeat url(./search.svg) 98% / 20px;
+	background: no-repeat url(./search.svg) 93% / 20px;
+	transition: all 0.1s ease-in;
+}
+
+input:focus {
+	outline: transparent;
+	border: 2px solid rgba(51, 51, 51, 0);
+	box-shadow: 1px 1px 5px 1px #99202585;
 }
 
 .no-suggestions {
@@ -78,7 +97,7 @@ input {
 	max-height: 143px;
 	overflow-y: auto;
 	padding-left: 0;
-	width: 100%;
+	width: 300px;
 }
 
 .suggestions li {
