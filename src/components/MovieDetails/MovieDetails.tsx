@@ -13,7 +13,7 @@ const MovieDetails = ({ userInput, movies }: Params) => {
 	});
 
 	if (selectedMovie) {
-		const { title, release_date, director, rt_score, producer, description } = selectedMovie;
+		const { title, director, rt_score, producer, description } = selectedMovie;
 		return (
 			<div className="movie-details">
 				<div>
